@@ -14,7 +14,8 @@
     // Defaults
     var settings = $.extend({
         'time': 400,
-        'delay': 10
+        'delay': 10,
+        'duration': 400
     }, options);
 
     return this.each(function(){
@@ -25,7 +26,7 @@
 
         var counterUpper = function() {
             var nums = [];
-            var divisions = $settings.time / $settings.delay;
+            var divisions = $settings.time / $settings.delay / $settings.duration;
             var num = $this.text();
             var isComma = /[0-9]+,[0-9]+/.test(num);
             num = num.replace(/,/g, '');
