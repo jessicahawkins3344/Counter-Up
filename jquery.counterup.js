@@ -54,12 +54,17 @@
                 nums.unshift(newNum);
             }
 
+          // Robert Penner's easeOutExpo
+            $this.easeOutExpo = function(t, b, c, d) {
+                return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
+            };
             $this.data('counterup-nums', nums);
             $this.text('0');
 
+          
             // Updates the number until we're done
             var f = function() {
-                $this.text($this.data('counterup-nums').shift());
+                $this.easeOutExpo.($this.text($this.data('counterup-nums').shift()));
                 if ($this.data('counterup-nums').length) {
                     setTimeout($this.data('counterup-func'), $settings.delay);
                 } else {
@@ -69,6 +74,7 @@
                 }
             };
             $this.data('counterup-func', f);
+          
 
             // Start the count up
             setTimeout($this.data('counterup-func'), $settings.delay);
