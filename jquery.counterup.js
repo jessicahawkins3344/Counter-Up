@@ -14,8 +14,7 @@
     // Defaults
     var settings = $.extend({
         'time': 400,
-        'delay': 10,
-        'duration': 400
+        'delay': 10
     }, options);
 
     return this.each(function(){
@@ -26,7 +25,7 @@
 
         var counterUpper = function() {
             var nums = [];
-            var divisions = $settings.time / $settings.delay / $settings.duration;
+            var divisions = $settings.time / $settings.delay;
             var num = $this.text();
             var isComma = /[0-9]+,[0-9]+/.test(num);
             num = num.replace(/,/g, '');
@@ -56,7 +55,7 @@
             }
 
           // Robert Penner's easeOutExpo
-            $this.easeOutExpo = function(t, b, c, d) {
+            $this.data = function(t, b, c, d) {
                 return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
             };
             $this.data('counterup-nums', nums);
